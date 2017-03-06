@@ -1,4 +1,4 @@
-Evoluted Directory Listing Script
+Audio support for Evoluted Directory Listing Script
 ==================================
 
 
