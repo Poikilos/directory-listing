@@ -1,11 +1,24 @@
 <?php
 session_start();
+
+# $configFileName = rtrim($dir, '/') . '/config.php';
+$repo_url = "https://github.com/poikilos/directory-listing";
+$configFileName = dirname(__FILE__)."/config.php";
+if (!file_exists($configFileName)) {
+    $error = "Could not find $configFileName. It should be in the same directory as " . basename(__FILE__) . " from $repo_url";
+    echo $error;
+    //throw new Exception($error);
+}
+include($configFileName);
+
 class DirectoryListing
 {
     /*
     ====================================================================================================
     Evoluted Directory Listing Script - Version 4
-    www.evoluted.net / info@evoluted.net
+    Poikilos' fork (from https://github.com/poikilos/directory-listing; See readme for changes.).
+    (originally from www.evoluted.net / info@evoluted.net)
+
     ====================================================================================================
 
     SYSTEM REQUIREMENTS
@@ -25,6 +38,7 @@ class DirectoryListing
     ====================================================================================================
     You may edit any of the variables in this section to alter how the directory listing script will
     function. Please read the notes above each variable for details on what they change.
+    These values can be placed in a config.php file with the same format as config.example.php.
     */
 
     // The top level directory where this script is located, or alternatively one of it's sub-directories
@@ -38,7 +52,7 @@ class DirectoryListing
 
     // If you've enabled the includeUrl parameter above, enter the full url to the directory the index.php file
     // is located in here, followed by a forward slash.
-    public $directoryUrl = 'http://yoursite.com/main-directory-name-here/';
+    public $directoryUrl = 'https://example.com/main-directory-name-here/';
 
     // Set to true to list all sub-directories and allow them to be browsed
     public $showSubDirectories = true;
@@ -207,7 +221,20 @@ class DirectoryListing
 
     public function __construct()
     {
+        global $CONFIG;
         define('DS', '/');
+        if (isset($CONFIG)) {
+            /*
+            foreach ($this as $key => $value) {
+                if (array_key_exists($key, $CONFIG)) {
+                    $this->{$key} = $CONFIG[$key];
+                }
+            }
+            */
+            foreach ($CONFIG as $key => $value) {
+                $this->{$key} = $CONFIG[$key];
+            }
+        }
     }
 
     public function run()
