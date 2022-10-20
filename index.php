@@ -1337,7 +1337,7 @@ function pr($data, $die = false)
 			<?php endif; ?>
 		<?php endif; ?>
 		<div class="row">
-			<div class="col-xs-12 text-center"><hr>Directory Listing Script &copy; <?php echo date('Y'); ?> Evoluted, <a href="http://www.evoluted.net">Web Design Sheffield</a></div>
+			<div class="col-xs-12 text-center"><hr><a href="https://github.com/poikilos/directory-listing">Directory Listing Redux</a> &copy; <?php echo date('Y'); ?> Evoluted (<a href="http://www.evoluted.net">Web Design Sheffield</a>) and <a href="https://hierosoft.com/">Hierosoft LLC</a></div>
 		</div>
 	</div>
 	<style>
